@@ -13,7 +13,7 @@ trap 'handle_error' ERR
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # Blobless clone the repo without checking out the files
-git clone --no-checkout --filter=blob:none $BUILDKITE_REPO .
+git clone --no-checkout --filter=blob:none $BUILDKITE_REPO $BUILDKITE_BUILD_CHECKOUT_PATH
 
 # Set the sparse-checkout path
 git sparse-checkout set $BUILDKITE_PLUGIN_SPARSE_CHECKOUT_PATTERN
