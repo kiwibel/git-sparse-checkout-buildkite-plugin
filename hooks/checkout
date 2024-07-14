@@ -16,7 +16,7 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 git clone --no-checkout --filter=blob:none $BUILDKITE_REPO $BUILDKITE_BUILD_CHECKOUT_PATH
 
 # Set the sparse-checkout path
-ls -lah && git sparse-checkout set $BUILDKITE_PLUGIN_SPARSE_CHECKOUT_BUILDKITE_PLUGIN_PATTERN
+ls -lah && env && git sparse-checkout set $BUILDKITE_PLUGIN_SPARSE_CHECKOUT_BUILDKITE_PLUGIN_PATTERN
 
 # Perform the checkout
 git checkout
