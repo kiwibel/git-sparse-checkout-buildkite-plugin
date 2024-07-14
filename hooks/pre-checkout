@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+handle_error() {
+    echo "An error occurred while setting sparse checkout. Exiting..."
+    exit 1
+}
+
+# Trap any errors and call the error handling function
+trap 'handle_error' ERR
+
+# Blobless clone the repo without checking out the files
+git clone --no-checkout --filter=blob:none $BUILDKITE_REPO .
+
+# Set the sparse-checkout path
+git sparse-checkout set $BUILDKITE_PLUGIN_SPARSE_CHECKOUT_PATTERN
+
+# Perform the checkout
+git checkout

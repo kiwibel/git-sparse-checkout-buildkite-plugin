@@ -1,0 +1,9 @@
+name: Git sparse checkout plugin
+description: Blobless clone a git repository and sparse checkout
+author: https://github.com/kiwibel
+requirements: []
+configuration:
+  properties:
+    pattern:
+      type: string
+  additionalProperties: false
