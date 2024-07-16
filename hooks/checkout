@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 handle_error() {
     echo "An error occurred while setting sparse checkout. Exiting..."
