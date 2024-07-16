@@ -13,7 +13,7 @@ trap 'handle_error' ERR
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # Don't clone the repo if the checkout directory exists
-if [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH" ]; then
+if [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH" ] && [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH/.git" ]; then
   echo "Checkout directory exists. Skipping clonning the repo..."
   pwd && ls -lah
   # Similar to the standard global chechout hook on the agent
