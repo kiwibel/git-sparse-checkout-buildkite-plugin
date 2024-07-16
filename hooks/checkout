@@ -13,19 +13,19 @@ trap 'handle_error' ERR
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # Don't clone the repo if the checkout directory exists
-if [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH" ] && [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH/.git" ]; then
+if [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH" ]; then
   echo "Checkout directory exists. Skipping clonning the repo..."
-  pwd && ls -lah
-  # Similar to the standard global chechout hook on the agent
-  git clean -ffxdq
-  echo "Fetch and checkout remote branch ${BUILDKITE_COMMIT} commit"
-  git fetch -v --prune -- origin $BUILDKITE_COMMIT
-  git checkout -f $BUILDKITE_COMMIT
-  echo "Cleaning again to catch any post-checkout changes"
-  git clean -ffxdq
-  echo "Checking to see if Git data needs to be sent to Buildkite"
-  buildkite-agent meta-data exists buildkite:git:commit
-  exit 0
+  # pwd && ls -lah
+  # # Similar to the standard global chechout hook on the agent
+  # git clean -ffxdq
+  # echo "Fetch and checkout remote branch ${BUILDKITE_COMMIT} commit"
+  # git fetch -v --prune -- origin $BUILDKITE_COMMIT
+  # git checkout -f $BUILDKITE_COMMIT
+  # echo "Cleaning again to catch any post-checkout changes"
+  # git clean -ffxdq
+  # echo "Checking to see if Git data needs to be sent to Buildkite"
+  # buildkite-agent meta-data exists buildkite:git:commit
+  # exit 0
 fi
 
 # Blobless clone the repo without checking out the files
