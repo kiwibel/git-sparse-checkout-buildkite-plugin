@@ -25,6 +25,7 @@ if [ -d "$BUILDKITE_BUILD_CHECKOUT_PATH" ]; then
   echo "Checking to see if Git data needs to be sent to Buildkite"
   buildkite-agent meta-data exists buildkite:git:commit
   exit 0
+fi
 
 # Blobless clone the repo without checking out the files
 git clone --no-checkout --filter=blob:none $BUILDKITE_REPO $BUILDKITE_BUILD_CHECKOUT_PATH
